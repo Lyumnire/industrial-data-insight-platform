@@ -1,0 +1,8 @@
+# AI-assisted
+# 测试专用配置：仅含测试桩值，非生产凭据。
+jwt:
+  secret: test-only-secret-not-a-production-credential
+
+metadata:
+  cipher:
+    key: test-cipher-key-not-a-production-credential

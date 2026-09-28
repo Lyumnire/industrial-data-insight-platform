@@ -1,0 +1,7 @@
+# AI-assisted
+# 保证 shell 版 wrapper 在任何平台检出后都是 LF（CRLF 会导致 Git Bash 执行失败；
+# maven-wrapper.properties 若含 CRLF，distributionUrl 会带 \r 导致 Maven 下载失败）
+mvnw text eol=lf
+mvnwDebug text eol=lf
+.mvn/wrapper/maven-wrapper.properties text eol=lf
+*.cmd text eol=crlf

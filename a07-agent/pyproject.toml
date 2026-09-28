@@ -1,0 +1,38 @@
+# AI-assisted
+# T-003：Agent 引擎依赖声明。选择 pyproject.toml（计划 §Task 3 Step 3.1 指定形式，
+# 且可顺带承载 pytest 配置）；依赖清单与工单一致（python-dotenv 为 pydantic-settings
+# 的传递依赖，.env 解析已覆盖，不重复声明）。
+# T-011：新增 pywin32（仅 Windows）——A6 沙箱 Job Object 限额（计划 §Task 11.2）。
+# T-012：新增 scikit-learn/joblib——A7 六算法沙箱建模模板（计划 §Task 12.2）。
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "a07-agent"
+version = "0.1.0"
+description = "A07 企业数据底座智能问析系统 - Agent 引擎（FastAPI）"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "openai>=1.40,<4",
+    "pydantic>=2.7,<3",
+    "pydantic-settings>=2.2,<3",
+    "sqlglot>=23.0",
+    "pymysql>=1.1",
+    "pandas>=2.2",
+    "scikit-learn>=1.4",
+    "joblib>=1.3",
+    "httpx>=0.27",
+    "pytest>=8.0",
+    "pywin32>=306; sys_platform == 'win32'",
+]
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.pytest.ini_options]
+# 任意工作目录下 `pytest a07-agent/tests` 均以 a07-agent 为 rootdir，保证 `from app...` 可导入
+pythonpath = ["."]
+testpaths = ["tests"]

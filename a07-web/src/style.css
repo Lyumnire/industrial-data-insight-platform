@@ -1,0 +1,364 @@
+/* AI-assisted —— 工业制造数据智能问析设计系统 */
+:root {
+  --app-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --app-font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, Menlo, monospace;
+
+  /* 暗色模式：高质感深岩灰（避免死黑/纯黑，温和柔和，高对比度与高易读性） */
+  --app-bg-deep: #111827;
+  --app-bg-surface: #1e2638;
+  --app-bg-sidebar: #162032;
+  --app-bg-card: #1e2638;
+  --app-bg-card-hover: #26334a;
+  --app-bg-glass: rgba(30, 38, 56, 0.9);
+  --app-bg-code: #131b2a;
+
+  --app-border: #2e3a4e;
+  --app-border-hover: #38bdf8;
+  --app-border-subtle: #242f42;
+
+  --app-text-primary: #f9fafb;
+  --app-text-regular: #e5e7eb;
+  --app-text-secondary: #9ca3af;
+  --app-text-muted: #9ca3af;
+
+  --app-primary: #0ea5e9;
+  --app-primary-rgb: 14, 165, 233;
+  --app-primary-hover: #0284c7;
+  --app-primary-glow: rgba(14, 165, 233, 0.2);
+
+  --app-accent-blue: #0ea5e9;
+  --app-accent-indigo: #6366f1;
+  --app-accent-purple: #a855f7;
+  --app-accent-emerald: #10b981;
+  --app-accent-amber: #f59e0b;
+  --app-accent-rose: #ef4444;
+
+  --app-gradient-primary: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+  --app-gradient-card: linear-gradient(180deg, rgba(30, 41, 59, 0.6) 0%, rgba(17, 24, 39, 0.75) 100%);
+  --app-gradient-emerald: linear-gradient(135deg, #10b981 0%, #059669 100%);
+
+  /* Apple 高质感毛玻璃令牌 */
+  --app-glass-bg: rgba(30, 38, 56, 0.78);
+  --app-glass-border: rgba(255, 255, 255, 0.08);
+  --app-glass-blur: blur(16px) saturate(180%);
+  --app-glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35);
+
+  --app-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --app-shadow-glow: 0 0 16px -2px rgba(14, 165, 233, 0.2);
+  --app-shadow-elevated: 0 8px 24px -4px rgba(0, 0, 0, 0.35);
+}
+
+/* 浅色模式：通透纯净、干净利落、大厂企业级设计标准 */
+html:not(.dark) {
+  --app-bg-deep: #f8fafc;
+  --app-bg-surface: #ffffff;
+  --app-bg-sidebar: #ffffff;
+  --app-bg-card: #ffffff;
+  --app-bg-card-hover: #f1f5f9;
+  --app-bg-glass: rgba(255, 255, 255, 0.95);
+  --app-bg-code: #f1f5f9;
+
+  --app-border: #e2e8f0;
+  --app-border-hover: #0284c7;
+  --app-border-subtle: #edf2f7;
+
+  --app-text-primary: #0f172a;
+  --app-text-regular: #334155;
+  --app-text-secondary: #64748b;
+  --app-text-muted: #64748b;
+
+  --app-primary: #0284c7;
+  --app-primary-rgb: 2, 132, 199;
+  --app-primary-hover: #0369a1;
+  --app-primary-glow: rgba(2, 132, 199, 0.12);
+
+  --app-gradient-primary: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  --app-gradient-card: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  --app-gradient-emerald: linear-gradient(135deg, #10b981 0%, #059669 100%);
+
+  /* Apple 浅色高透毛玻璃令牌 */
+  --app-glass-bg: rgba(255, 255, 255, 0.85);
+  --app-glass-border: rgba(226, 232, 240, 0.8);
+  --app-glass-blur: blur(16px) saturate(180%);
+  --app-glass-shadow: 0 8px 30px -4px rgba(15, 23, 42, 0.08);
+
+  --app-shadow-card: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+  --app-shadow-glow: 0 0 12px -2px rgba(2, 132, 199, 0.15);
+  --app-shadow-elevated: 0 10px 25px -4px rgba(15, 23, 42, 0.08);
+}
+
+/* Element Plus 暗色变量精准调优 */
+html.dark {
+  --el-color-primary: #0ea5e9;
+  --el-color-primary-light-3: #38bdf8;
+  --el-color-primary-light-7: #0284c7;
+  --el-color-primary-light-9: rgba(14, 165, 233, 0.15);
+  --el-color-primary-dark-2: #0369a1;
+
+  --el-bg-color: #1e2638;
+  --el-bg-color-page: #111827;
+  --el-bg-color-overlay: #1e2638;
+
+  --el-border-color: #2e3a4e;
+  --el-border-color-light: #242f42;
+  --el-border-color-lighter: #1d2535;
+
+  --el-text-color-primary: #f9fafb;
+  --el-text-color-regular: #e5e7eb;
+  --el-text-color-secondary: #9ca3af;
+  --el-text-color-placeholder: #9ca3af;
+
+  --el-fill-color: rgba(255, 255, 255, 0.06);
+  --el-fill-color-light: rgba(255, 255, 255, 0.03);
+  --el-fill-color-blank: #162032;
+
+  --el-card-bg-color: var(--app-bg-card);
+  --el-card-border-color: var(--app-border);
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--app-font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--app-bg-deep);
+  color: var(--app-text-primary);
+  overflow-x: hidden;
+}
+
+/* 优雅滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+  transition: background 0.2s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--app-primary);
+}
+
+/* 全局通用卡片与 Apple 高质感毛玻璃 */
+.glass-panel {
+  background: var(--app-glass-bg);
+  backdrop-filter: var(--app-glass-blur);
+  -webkit-backdrop-filter: var(--app-glass-blur);
+  border: 1px solid var(--app-glass-border);
+  box-shadow: var(--app-glass-shadow);
+}
+
+.tech-card {
+  background: var(--app-bg-card);
+  border: 1px solid var(--app-border);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.tech-card:hover {
+  border-color: var(--app-border-hover);
+  box-shadow: var(--app-shadow-glow);
+}
+
+/* 呼吸光点 */
+.pulse-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--app-accent-emerald);
+}
+.pulse-badge::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--app-accent-emerald);
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: pulse-ring 2s infinite cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+/* 流式输出光标闪烁 */
+.streaming-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  vertical-align: -0.15em;
+  background-color: var(--app-primary);
+  margin-left: 2px;
+  animation: cursor-blink 0.9s infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* 消息流与卡片排版 */
+.md-text {
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--app-text-regular);
+}
+
+.md-text p {
+  margin: 8px 0;
+}
+
+.md-text strong {
+  color: var(--app-text-primary);
+  font-weight: 600;
+}
+
+.md-text code {
+  font-family: var(--app-font-mono);
+  background: rgba(14, 165, 233, 0.1);
+  border: 1px solid rgba(14, 165, 233, 0.25);
+  color: var(--app-primary);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.md-text pre {
+  font-family: var(--app-font-mono);
+  background: var(--app-bg-code);
+  border: 1px solid var(--app-border);
+  padding: 12px 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.md-text pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: var(--app-text-primary);
+}
+
+.md-text ul,
+.md-text ol {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.md-text li {
+  margin: 4px 0;
+}
+
+/* 表格全局适配保证字色对比度与固定列绝对不穿透 */
+html.dark .el-table {
+  --el-table-bg-color: var(--app-bg-surface);
+  --el-table-tr-bg-color: var(--app-bg-card);
+  --el-table-header-bg-color: #162032;
+  --el-table-border-color: var(--app-border);
+  --el-table-row-hover-bg-color: #243147;
+}
+
+html.dark .el-table th.el-table__cell {
+  background: #162032 !important;
+  color: #e5e7eb !important;
+  font-weight: 600;
+}
+
+html.dark .el-table td.el-table__cell {
+  background-color: var(--app-bg-card);
+  color: #f9fafb;
+}
+
+html.dark .el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell {
+  background-color: #192233 !important;
+}
+
+html.dark .el-table .el-table__body tr.hover-row > td.el-table__cell,
+html.dark .el-table .el-table__body tr:hover > td.el-table__cell {
+  background-color: #243147 !important;
+}
+
+/* 暗色固定列（操作列等）实体背景与投影隔离，严防水平滚动时字迹穿透重叠 */
+html.dark .el-table .el-table__fixed,
+html.dark .el-table .el-table__fixed-right,
+html.dark .el-table .el-table__fixed-right .el-table__cell,
+html.dark .el-table .el-table__fixed .el-table__cell {
+  background-color: var(--app-bg-card) !important;
+}
+
+html.dark .el-table .el-table__fixed-right th.el-table__cell,
+html.dark .el-table .el-table__fixed th.el-table__cell,
+html.dark .el-table .el-table__fixed-right-patch {
+  background-color: #162032 !important;
+}
+
+/* 浅色模式表格及固定列实体适配 */
+html:not(.dark) .el-table th.el-table__cell {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  font-weight: 600;
+}
+
+html:not(.dark) .el-table td.el-table__cell {
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+html:not(.dark) .el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell {
+  background-color: #f8fafc !important;
+}
+
+html:not(.dark) .el-table .el-table__body tr.hover-row > td.el-table__cell,
+html:not(.dark) .el-table .el-table__body tr:hover > td.el-table__cell {
+  background-color: #f1f5f9 !important;
+}
+
+html:not(.dark) .el-table .el-table__fixed,
+html:not(.dark) .el-table .el-table__fixed-right,
+html:not(.dark) .el-table .el-table__fixed-right .el-table__cell,
+html:not(.dark) .el-table .el-table__fixed .el-table__cell {
+  background-color: #ffffff !important;
+}
+
+html:not(.dark) .el-table .el-table__fixed-right th.el-table__cell,
+html:not(.dark) .el-table .el-table__fixed th.el-table__cell,
+html:not(.dark) .el-table .el-table__fixed-right-patch {
+  background-color: #f8fafc !important;
+}
+
+/* 固定列边缘阴影：明确界定滚动区与固定区边界 */
+.el-table .el-table__fixed-right {
+  box-shadow: -5px 0 12px rgba(0, 0, 0, 0.25) !important;
+}
+
+html:not(.dark) .el-table .el-table__fixed-right {
+  box-shadow: -4px 0 10px rgba(15, 23, 42, 0.08) !important;
+}

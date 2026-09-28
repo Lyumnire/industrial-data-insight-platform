@@ -1,0 +1,62 @@
+# ---- secrets ----
+.env
+*.key
+deploy/mysql-data/
+
+# ---- Java (a07-server) ----
+a07-server/target/
+*.class
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
+
+# ---- Python (a07-agent) ----
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+a07-agent/chroma_data/
+a07-agent/models/
+a07-agent/logs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---- Node (a07-web) ----
+node_modules/
+a07-web/dist/
+*.local
+
+# ---- IDE / OS ----
+.idea/
+.vscode/
+*.iml
+Thumbs.db
+.DS_Store
+
+# ---- logs & temp ----
+*.log
+a07-data/generated/*.csv
+
+# ---- 不公开材料（内部开发文档 / 课程与赛题文件 / 评测题库）----
+docs/
+*.docx
+*.pdf
+/mlreq*.json
+/mlresp*.json
+a07-agent/scripts/eval_dataset.json
+
+# ---- 不公开材料（内部开发文档 / 课程与赛题文件 / 评测题库 / 交付包）----
+docs/
+*.docx
+*.pdf
+/mlreq*.json
+/mlresp*.json
+a07-agent/scripts/eval_dataset.json
+【A07】*/
+output/
+.playwright-cli/
+deploy/logs/
+deploy/probe_chat.py
+deploy/t030_ml_badref.sh
+a07-web/public/icons.svg

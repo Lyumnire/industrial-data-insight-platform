@@ -1,0 +1,27 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: a07-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: a07root
+      MYSQL_DATABASE: mes_demo
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+      - ../a07-data/sql:/docker-entrypoint-initdb.d:ro
+      # CSV 源目录（只读）；init 脚本 05_load_csv.sh 会拷到 /tmp 供 LOAD DATA 使用
+      - ../a07-data/generated:/var/lib/csv-src:ro
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --secure-file-priv=/tmp
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-pa07root"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  # P2 计划加入：a07-server(8080) / a07-agent(8100) / web(nginx:80)
+  # 当前开发模式分别启动：
+  #   MySQL:    docker compose up -d mysql
+  #   引擎:     cd a07-agent && uvicorn app.main:app --port 8100 --reload
+  #   业务服务: cd a07-server && mvn spring-boot:run
+  #   前端:     cd a07-web && npm run dev

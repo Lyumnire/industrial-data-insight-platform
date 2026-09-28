@@ -1,0 +1,54 @@
+# AI-assisted
+# a07-server 配置（P1 最小切片）
+# 红线 R3：所有环境相关凭据经环境变量注入，本文件不含任何真实密钥。
+server:
+  port: 8080
+
+spring:
+  application:
+    name: a07-server
+  datasource:
+    # 默认 H2 内存库（MySQL 兼容模式）：无 Docker 环境下也可启动与演示，Flyway 基线照常执行。
+    # 生产/联调时注入环境变量 MYSQL_URL / MYSQL_USER / MYSQL_PASSWORD 切换 MySQL 8。
+    url: ${MYSQL_URL:jdbc:h2:mem:a07_platform;MODE=MySQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1}
+    username: ${MYSQL_USER:sa}
+    password: ${MYSQL_PASSWORD:}
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    # a07_platform 由 a07-data/sql/02_seed_knowledge.sql 预建（知识种子属数据初始化范畴），
+    # Flyway 收编存量 schema：baseline 后 V1__init.sql（sys_user）仍正常执行（T8 联调修复）
+    baseline-on-migrate: true
+    baseline-version: 0
+
+mybatis-plus:
+  configuration:
+    # 数据库访问超时兜底，秒（红线 R8）
+    default-statement-timeout: 10
+
+agent:
+  # a07-agent 引擎根地址（生产经环境变量 AGENT_BASE_URL 注入）
+  base-url: ${AGENT_BASE_URL:http://localhost:8100}
+  # 等待引擎响应头的预算（秒）：超时判 502
+  header-wait-seconds: 15
+  # 透传期间的空闲读超时（秒）：引擎超过该时长未下发任何字节则断开（红线 R8）
+  read-idle-timeout-seconds: 120
+  # TCP 连接建立超时（秒）
+  connect-timeout-seconds: 5
+  # 建模直调 POST /api/agent/ml/run 整请求超时（秒；BUG-021，训练可长于 SSE 首包）
+  ml-timeout-seconds: 120
+
+jwt:
+  # HS256 密钥：生产必填（未配置时启动会用临时随机密钥并告警，重启后旧 token 失效，仅限本地开发）
+  secret: ${JWT_SECRET:}
+  # token 有效期（小时），规范要求 2h
+  expire-hours: 2
+
+metadata:
+  cipher:
+    # 数据源密码 AES-GCM 密钥（T-016 S3，红线 R3）：生产必填 METADATA_CIPHER_KEY
+    key: ${METADATA_CIPHER_KEY:}
+
+logging:
+  level:
+    com.a07.server: INFO
